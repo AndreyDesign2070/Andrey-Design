@@ -1,0 +1,6 @@
+{
+  "name": "GOLAPP",
+  "description": "Gestor de Torneos de Fútbol",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

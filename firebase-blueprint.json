@@ -1,0 +1,151 @@
+{
+  "entities": {
+    "Tournament": {
+      "title": "Tournament",
+      "description": "Representa un torneo de fútbol gestionado en GOLAPP",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "logo": { "type": "string" }
+      },
+      "required": ["id", "name", "type", "status", "logo"]
+    },
+    "Club": {
+      "title": "Club",
+      "description": "Representa un club o equipo de fútbol participando en un torneo",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "name": { "type": "string" },
+        "crest": { "type": "string" },
+        "primaryColor": { "type": "string" },
+        "secondaryColor": { "type": "string" }
+      },
+      "required": ["id", "tournamentId", "name", "crest", "primaryColor", "secondaryColor"]
+    },
+    "Player": {
+      "title": "Player",
+      "description": "Representa un jugador inscripto en un equipo",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clubId": { "type": "string" },
+        "dorsal": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" }
+      },
+      "required": ["id", "clubId", "dorsal", "firstName", "lastName"]
+    },
+    "Matchday": {
+      "title": "Matchday",
+      "description": "Representa una fecha deportiva compuesta de varios partidos programados",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "number": { "type": "number" },
+        "matches": { "type": "array" }
+      },
+      "required": ["id", "tournamentId", "number", "matches"]
+    },
+    "GoalRecord": {
+      "title": "GoalRecord",
+      "description": "Expediente estadístico de goles marcados por un jugador",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "clubId": { "type": "string" },
+        "playerId": { "type": "string" },
+        "goals": { "type": "number" },
+        "matchday": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["id", "tournamentId", "clubId", "playerId", "goals"]
+    },
+    "SanctionRecord": {
+      "title": "SanctionRecord",
+      "description": "Expediente disciplinario arbitral de tarjetas y suspensiones",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "clubId": { "type": "string" },
+        "playerId": { "type": "string" },
+        "cardType": { "type": "string" },
+        "suspensionWeeks": { "type": "number" },
+        "reason": { "type": "string" },
+        "matchday": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["id", "tournamentId", "clubId", "playerId", "cardType", "suspensionWeeks", "reason", "matchday", "date"]
+    },
+    "FixturePDF": {
+      "title": "FixturePDF",
+      "description": "Almacena el pdf de fixture asignado a un torneo en formato Base64",
+      "type": "object",
+      "properties": {
+        "tournamentId": { "type": "string" },
+        "pdfDataUrl": { "type": "string" },
+        "fileName": { "type": "string" }
+      },
+      "required": ["tournamentId", "pdfDataUrl", "fileName"]
+    },
+    "KnockoutMatch": {
+      "title": "KnockoutMatch",
+      "description": "Representa un partido de la fase final o etapa final (Octavos, Cuartos, Semifinal, Final)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "stage": { "type": "string" },
+        "matchIndex": { "type": "number" },
+        "homeTeamId": { "type": "string" },
+        "awayTeamId": { "type": "string" },
+        "homeScore": { "type": "number" },
+        "awayScore": { "type": "number" },
+        "played": { "type": "boolean" },
+        "date": { "type": "string" }
+      },
+      "required": ["id", "tournamentId", "stage", "matchIndex", "homeTeamId", "awayTeamId", "played", "date"]
+    }
+  },
+  "firestore": {
+    "/tournaments/{tournamentId}": {
+      "schema": "Tournament",
+      "description": "Colección global de torneos"
+    },
+    "/clubs/{clubId}": {
+      "schema": "Club",
+      "description": "Colección global de equipos participantes"
+    },
+    "/players/{playerId}": {
+      "schema": "Player",
+      "description": "Colección global de jugadores de los clubes"
+    },
+    "/matchdays/{matchdayId}": {
+      "schema": "Matchday",
+      "description": "Colección global de jornadas y sus partidos"
+    },
+    "/goalRecords/{goalId}": {
+      "schema": "GoalRecord",
+      "description": "Colección global de goleadores cargados"
+    },
+    "/sanctionRecords/{sanctionId}": {
+      "schema": "SanctionRecord",
+      "description": "Colección global de sanciones disciplinarias"
+    },
+    "/fixtures/{fixtureId}": {
+      "schema": "FixturePDF",
+      "description": "Colección global de documentos fixture cargados"
+    },
+    "/knockoutMatches/{knockoutId}": {
+      "schema": "KnockoutMatch",
+      "description": "Colección global de partidos de eliminación directa de la etapa final"
+    }
+  }
+}
