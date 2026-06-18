@@ -40,8 +40,34 @@ export default function Login({ onLogin }: LoginProps) {
       {/* Header Info */}
       <div className="relative z-10 text-center mt-8 animate-fade-in">
         <div className="flex justify-center mb-2">
-          <div className="bg-emerald-500/15 p-4 rounded-full border border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
-            <span className="text-4xl">⚽</span>
+          <div className="bg-emerald-500/15 p-4 rounded-full border border-emerald-500/30 shadow-2xl shadow-emerald-500/20 flex items-center justify-center">
+            {/* Custom SVG premium soccer ball where the central pentagon tile matches GOLAPP "APP" color (emerald-500) */}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="w-14 h-14 text-white" 
+              viewBox="0 0 24 24" 
+              strokeWidth="2" 
+              stroke="currentColor" 
+              fill="none" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              {/* Outer circle */}
+              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" stroke="white" strokeWidth="2" />
+              {/* Central pentagon representing modern soccer panels, filled with GOLAPP's emerald color */}
+              <path 
+                d="M12 7l4.76 3.455l-1.817 5.545h-5.886l-1.817 -5.545z" 
+                className="fill-emerald-500 stroke-emerald-500" 
+                strokeWidth="2" 
+              />
+              {/* Surrounding panel line dividers */}
+              <path d="M12 7v-4" stroke="white" strokeWidth="2" />
+              <path d="M16.76 10.455l3.085 -2.545" stroke="white" strokeWidth="2" />
+              <path d="M14.943 16l2.057 3.5" stroke="white" strokeWidth="2" />
+              <path d="M9.057 16l-2.057 3.5" stroke="white" strokeWidth="2" />
+              <path d="M7.24 10.455l-3.085 -2.545" stroke="white" strokeWidth="2" />
+            </svg>
           </div>
         </div>
         <h1 className="font-display text-5xl font-extrabold tracking-tight text-white drop-shadow-md">
